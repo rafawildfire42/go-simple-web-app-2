@@ -1,28 +1,83 @@
 {{define "Student"}}
 
-<!DOCTYPE html>
-<html lang="en">
+{{template "_head"}}
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Aluno</title>
-</head>
+{{template "_nav"}}
 
-<body>
-  <div class="container text-center">
-    <div class="row align-items-start">
-      <div class="col">
-        One of three columns
-      </div>
-      <div class="col">
-        One of three columns
-      </div>
-      <div class="col">
-        One of three columns
+<div class="container mt-5">
+  <h3>
+    <a href="/" class="d-inline-flex link-body-emphasis text-decoration-none">
+      <i class="bi-arrow-left-circle text-primary" style="margin-right: 12px;"></i>
+    </a>
+    Perfil do aluno
+  </h3>
+</div>
+
+<div class="container mt-5">
+
+  <div class="row justify-content-center">
+
+    <div class="col-12 col-sm-4">
+      <div class="card mx-auto" style="width: 18rem;">
+        <img src="/assets/images/foto_perfil.png" class="card-img-top">
+        <div class="card-body">
+
+          <span class="card-text fw-bold">Nome:</span>
+          <span class="card-text">Rafael Fontenele</span><br>
+
+          <span class="card-text fw-bold">Email:</span>
+          <span class="card-text">rafaelfontenele4@gmail.com</span><br>
+
+          <span class="card-text fw-bold">Idade:</span>
+          <span class="card-text">25 anos</span><br>
+
+        </div>
       </div>
     </div>
+
+    <div class="col-12 col-sm-8">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Disciplina</th>
+            <th scope="col">1º bim.</th>
+            <th scope="col">2º bim.</th>
+            <th scope="col">3º bim.</th>
+            <th scope="col">4º bim.</th>
+            <th scope="col">Média final</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Matemática</th>
+            <td>9.0</td>
+            <td>10.0</td>
+            <td>9.5</td>
+            <td>9.5</td>
+            <td>9.5</td>
+          </tr>
+          <tr>
+            <th scope="row">Português</th>
+            <td>9.0</td>
+            <td>10.0</td>
+            <td>9.5</td>
+            <td>9.5</td>
+            <td>9.5</td>
+          </tr>
+          <tr>
+            <th scope="row">Física</th>
+            <td>9.0</td>
+            <td>10.0</td>
+            <td>9.5</td>
+            <td>9.5</td>
+            <td>9.5</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
   </div>
+</div>
 </body>
 
 </html>
