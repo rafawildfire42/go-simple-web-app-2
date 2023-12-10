@@ -4,7 +4,7 @@
 
 {{template "_nav"}}
 
-<div class="container mt-5">
+<div class="container mt-3">
   <h3>
     <a href="/" class="d-inline-flex link-body-emphasis text-decoration-none">
       <i class="bi-arrow-left-circle text-primary" style="margin-right: 12px;"></i>
@@ -13,7 +13,7 @@
   </h3>
 </div>
 
-<div class="container mt-5">
+<div class="container mt-3">
 
   <div class="row justify-content-center">
 
@@ -48,30 +48,16 @@
           </tr>
         </thead>
         <tbody>
+          {{range .}}
           <tr>
-            <th scope="row">Matemática</th>
-            <td>9.0</td>
-            <td>10.0</td>
-            <td>9.5</td>
-            <td>9.5</td>
-            <td>9.5</td>
+            <th scope="row">{{.Title}}</th>
+            <td>{{.Score1}}</td>
+            <td>{{.Score2}}</td>
+            <td>{{.Score3}}</td>
+            <td>{{.Score4}}</td>
+            <td>{{.FinalMean}}</td>
           </tr>
-          <tr>
-            <th scope="row">Português</th>
-            <td>9.0</td>
-            <td>10.0</td>
-            <td>9.5</td>
-            <td>9.5</td>
-            <td>9.5</td>
-          </tr>
-          <tr>
-            <th scope="row">Física</th>
-            <td>9.0</td>
-            <td>10.0</td>
-            <td>9.5</td>
-            <td>9.5</td>
-            <td>9.5</td>
-          </tr>
+        {{end}}
         </tbody>
       </table>
     </div>

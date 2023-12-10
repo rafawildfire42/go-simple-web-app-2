@@ -1,0 +1,82 @@
+{{define "AddOrEditStudent"}}
+
+{{template "_head"}}
+
+{{template "_nav"}}
+
+<div class="container mt-3">
+  <h3>
+    <a href="/" class="d-inline-flex link-body-emphasis text-decoration-none">
+      <i class="bi-arrow-left-circle text-primary" style="margin-right: 12px;"></i>
+    </a>
+
+    {{if eq .Operation "edit"}}
+    Editar
+    {{else if eq .Operation "add"}}
+    Adicionar
+    {{else}}
+    Operação Desconhecida
+    {{end}} 
+    
+    aluno
+  </h3>
+</div>
+
+<div class="container mt-3">
+  <div class="row justify-content-center">
+    <div class="col-6">
+
+      <form method="POST" action="create">
+
+        <div class="mb-3">
+          <label for="formGroupExampleInput" class="form-label">Nome</label>
+          <input type="text" class="form-control" name="firstName" placeholder="Primeiro nome">
+        </div>
+
+        <div class="mb-3">
+          <label for="formGroupExampleInput2" class="form-label">Sobrenome</label>
+          <input type="text" class="form-control" name="lastName" placeholder="Sobrenome">
+        </div>
+
+        <div class="mb-3">
+          <label for="formGroupExampleInput2" class="form-label">Serie</label>
+          <input type="number" class="form-control" name="serie" placeholder="Série">
+        </div>
+
+        <div class="mb-3">
+          <label for="selectSerieType" class="form-label">Ensino</label>
+          <select class="form-select" aria-label="Default select example" name="serieType">
+            <option value="Fundamental">Fundamental</option>
+            <option value="Médio">Médio</option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label for="formGroupExampleInput2" class="form-label">Idade</label>
+          <input type="number" class="form-control" name="age" placeholder="Digite aqui a sua idade">
+        </div>
+
+        <div class="mb-3">
+          <label for="email" class="form-label">E-mail</label>
+          <input type="text" class="form-control" name="email" placeholder="Escolha o seu melhor e-mail">
+        </div>
+
+        <div class="my-5 d-grid gap-2">
+          <button type="submit" class="btn btn-success" value="salvar">
+            Adicionar aluno
+          </button>
+          <button class="btn btn-danger">
+            Cancelar
+          </button>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+</div>
+</body>
+
+</html>
+
+{{end}}
