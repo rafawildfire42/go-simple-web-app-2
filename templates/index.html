@@ -9,9 +9,12 @@
     <i class="bi-person-lines-fill" style="margin-right: 12px;"></i>
     Relação de alunos
   </h3>
-  <a href="/add-student" class="btn btn-secondary">
+  <!-- <a href="/add-student" class="btn btn-secondary">
     Adicionar aluno
-  </a>
+  </a> -->
+  <button onclick="addStudent('{{len . }}')" class="btn btn-secondary">
+    Adicionar aluno
+  </button>
 </div>
 
 <div class="container my-3">
@@ -53,7 +56,7 @@
 
 </body>
 
-<script src="/assets/js/deleteStudent.js"></script>
+<script src="/assets/js/students.js"></script>
 
 </html>
 

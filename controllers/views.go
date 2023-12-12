@@ -17,9 +17,9 @@ var temp = template.Must(template.ParseGlob("templates/*.html"))
 
 func IndexView(w http.ResponseWriter, r *http.Request) {
 
-	students := models.ListStudents()
+	Students := models.ListStudents()
 
-	temp.ExecuteTemplate(w, "Index", students)
+	temp.ExecuteTemplate(w, "Index", Students)
 
 }
 
@@ -65,8 +65,6 @@ func DeleteStudentView(w http.ResponseWriter, r *http.Request) {
 
 	studentID := r.URL.Query().Get("id")
 
-	fmt.Println(studentID)
-
 	models.DeleteStudent(studentID)
 
 	http.Redirect(w, r, "/", 301)
@@ -92,9 +90,7 @@ func CreateOrEditStudentView(w http.ResponseWriter, r *http.Request) {
 
 		studentID := r.FormValue("ID")
 
-		fmt.Println(studentID)
-
-		if studentID != "" {
+		if studentID != "0" {
 			models.EditStudent(firstName, lastName, serieType, email, studentID, serieConverted, ageConverted)
 		} else {
 			models.CreateStudent(firstName, lastName, serieType, email, serieConverted, ageConverted)
