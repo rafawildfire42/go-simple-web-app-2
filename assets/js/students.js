@@ -1,5 +1,5 @@
 function onDelete(id) {
-  let response = confirm("Tem certeza que você deseja deletar este produto?")
+  let response = confirm("Tem certeza que você deseja deletar este aluno?")
   if (response) {
     window.location = "/delete?id=" + id
   }
