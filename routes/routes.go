@@ -12,5 +12,5 @@ func HandleRoutes() {
 	http.HandleFunc("/add-student", controllers.PageCreateStudentView)
 	http.HandleFunc("/edit-student", controllers.PageEditStudentView)
 	http.HandleFunc("/createOrEdit", controllers.CreateOrEditStudentView)
-	// http.HandleFunc("/edit", controllers.EditStudentView)
+	http.HandleFunc("/delete", controllers.DeleteStudentView)
 }

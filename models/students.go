@@ -67,11 +67,6 @@ func GetStudent(studentID string) Student {
 
 func ListStudents() []Student {
 
-	// students := []Student{
-	// 	{ID: 1, FirstName: "Rafael", LastName: "Fontenele", Serie: 4, SerieType: "Médio"},
-	// 	{ID: 2, FirstName: "Maria", LastName: "Cecília", Serie: 3, SerieType: "Fundamental"},
-	// }
-
 	dbData := db.ConnectDatabase()
 	defer dbData.Close()
 
@@ -148,6 +143,25 @@ func EditStudent(firstName, lastName, serieType, email, studentID string, serie,
 	}
 
 	_, err = editStudent.Exec(firstName, lastName, serie, serieType, age, email, studentID)
+
+	if err != nil {
+		panic(err.Error())
+	}
+
+}
+
+func DeleteStudent(studentID string) {
+
+	dbData := db.ConnectDatabase()
+	defer dbData.Close()
+
+	deleteStudent, err := dbData.Prepare("DELETE FROM students WHERE id = ?;")
+
+	if err != nil {
+		panic(err.Error())
+	}
+
+	_, err = deleteStudent.Exec(studentID)
 
 	if err != nil {
 		panic(err.Error())

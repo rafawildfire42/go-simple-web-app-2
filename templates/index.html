@@ -39,6 +39,7 @@
           <td class="d-md-flex justify-content-evenly">
             <a class="btn btn-warning" href="/edit-student?id={{.ID}}" role="button">Editar</a>
             <a class="btn btn-primary" href="/student?id={{.ID}}" role="button">Visualizar</a>
+            <button class="btn btn-danger" onclick="onDelete('{{.ID}}')" role="button">Deletar</button>
           </td>
         </tr>
         {{end}}
@@ -51,6 +52,8 @@
 </div>
 
 </body>
+
+<script src="/assets/js/deleteStudent.js"></script>
 
 </html>
 

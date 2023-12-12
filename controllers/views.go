@@ -61,6 +61,18 @@ func PageCreateStudentView(w http.ResponseWriter, r *http.Request) {
 
 }
 
+func DeleteStudentView(w http.ResponseWriter, r *http.Request) {
+
+	studentID := r.URL.Query().Get("id")
+
+	fmt.Println(studentID)
+
+	models.DeleteStudent(studentID)
+
+	http.Redirect(w, r, "/", 301)
+
+}
+
 func CreateOrEditStudentView(w http.ResponseWriter, r *http.Request) {
 
 	if r.Method == "POST" {
