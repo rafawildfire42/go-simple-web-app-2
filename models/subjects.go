@@ -48,15 +48,40 @@ func GetDiscipline(studentID string) Subject {
 
 }
 
-func CreateDiscipline(studentID string) Subject {
+func CreateSubject(title string, score1, score2, score3, score4 float64, studentID int) {
 
 	dbData := db.ConnectDatabase()
 	defer dbData.Close()
 
-	var subject Subject
+	createSubject, err := dbData.Prepare("INSERT INTO students (Title, Score1, Score2, Score3, Score4, StudentID) VALUES (?, ?, ?, ?, ?, ?);")
 
-	// createDiscipline, _ := dbData.Prepare("INSERT INTO students (Title, Score1, Score2, Score3, Score4, StudentID) VALUES (?, ?, ?, ?, ?, ?);")
+	if err != nil {
+		panic(err.Error())
+	}
 
-	return subject
+	_, err = createSubject.Exec(title, score1, score2, score3, score4, studentID)
+
+	if err != nil {
+		panic(err.Error())
+	}
+
+}
+
+func EditSubject(title string, score1, score2, score3, score4 float64, subjectID int) {
+
+	dbData := db.ConnectDatabase()
+	defer dbData.Close()
+
+	editSubject, err := dbData.Prepare("UPDATE subjects SET Title = ?, Score1 = ?, Score2 = ?, Score3 = ?, Score4 = ? WHERE ID = ?;")
+
+	if err != nil {
+		panic(err.Error())
+	}
+
+	_, err = editSubject.Exec(title, score1, score2, score3, score4)
+
+	if err != nil {
+		panic(err.Error())
+	}
 
 }
