@@ -21,10 +21,27 @@
         <img {{ if eq .Student.Gender "M" }} src="/assets/images/Mstudent.png" {{ else }}
           src="/assets/images/Fstudent.png" {{ end }} class="card-img-top mt-3">
         <div class="card-body">
-          <p class="card-text fw-bold">Nome: {{ .Student.FirstName }} {{ .Student.LastName }}</p>
-          <p class="card-text fw-bold">Email: {{ .Student.Email }}</p>
-          <p class="card-text fw-bold">Idade: {{ .Student.Age }} anos</p>
-          <p class="card-text fw-bold">Série: {{ .Student.Serie }}ª série - {{ .Student.SerieType }}</p>
+
+          <p class="card-text">
+            <span class="fw-bold">Nome:</span>
+            {{ .Student.FirstName }} {{ .Student.LastName }}
+          </p>
+
+          <p class="card-text">
+            <span class="fw-bold">Email:</span>
+            {{ .Student.Email }}
+          </p>
+
+          <p class="card-text">
+            <span class="fw-bold">Idade:</span>
+            {{ .Student.Age }} anos
+          </p>
+
+          <p class="card-text">
+            <span class="fw-bold">Série:</span>
+            {{ .Student.Serie }}ª série - {{ .Student.SerieType}}
+          </p>
+          
         </div>
       </div>
     </div>
@@ -56,7 +73,8 @@
       </table>
       {{ else }}
       <p class="lead">Este aluno não possui disciplinas cadastradas.
-        <a href="/add-subject?studentID={{ .Student.ID }}">Clique aqui</a> para adicionar uma disciplina para este aluno.
+        <a href="/add-subject?studentID={{ .Student.ID }}">Clique aqui</a> para adicionar uma disciplina para este
+        aluno.
       </p>
       {{ end }}
     </div>
