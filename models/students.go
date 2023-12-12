@@ -1,6 +1,8 @@
 package models
 
 import (
+	"database/sql"
+	"fmt"
 	"vuewebapp/db"
 )
 
@@ -25,7 +27,45 @@ type Discipline struct {
 	StudentID int
 }
 
-func GetStudents() []Student {
+func GetStudent(studentID string) Student {
+	dbData := db.ConnectDatabase()
+	defer dbData.Close()
+
+	var student Student
+
+	var (
+		firstName, lastName, serieType, email string
+		id, serie, age                        int
+	)
+
+	query := fmt.Sprintf("SELECT * FROM students WHERE id=%s", studentID)
+
+	studentRows, err := dbData.Query(query)
+
+	if err != nil {
+		panic(err.Error())
+	}
+
+	if studentRows.Next() {
+		studentRows.Scan(&id, &firstName, &lastName, &serie, &serieType, &age, &email)
+
+		student.ID = id
+		student.FirstName = firstName
+		student.LastName = lastName
+		student.Serie = serie
+		student.SerieType = serieType
+		student.Age = age
+		student.Email = email
+
+	} else {
+		fmt.Println("Nenhum estudante encontrado para o ID 4.")
+	}
+
+	return student
+
+}
+
+func ListStudents() []Student {
 
 	// students := []Student{
 	// 	{ID: 1, FirstName: "Rafael", LastName: "Fontenele", Serie: 4, SerieType: "Médio"},
@@ -76,13 +116,42 @@ func CreateStudent(firstName, lastName, serieType, email string, serie, age int)
 	dbData := db.ConnectDatabase()
 	defer dbData.Close()
 
-	createStudent, err := dbData.Prepare("INSERT INTO students (FirstName, LastName, Serie, SerieType, Age, email) VALUES (?, ?, ?, ?, ?, ?);")
+	var createStudent *sql.Stmt
+	var err error
+
+	createStudent, err = dbData.Prepare("INSERT INTO students (FirstName, LastName, Serie, SerieType, Age, email) VALUES (?, ?, ?, ?, ?, ?);")
 
 	if err != nil {
 		panic(err.Error())
 	}
 
-	createStudent.Exec(firstName, lastName, serie, serieType, email, age)
+	_, err = createStudent.Exec(firstName, lastName, serie, serieType, age, email)
+
+	if err != nil {
+		panic(err.Error())
+	}
+
+}
+
+func EditStudent(firstName, lastName, serieType, email, studentID string, serie, age int) {
+
+	dbData := db.ConnectDatabase()
+	defer dbData.Close()
+
+	var editStudent *sql.Stmt
+	var err error
+
+	editStudent, err = dbData.Prepare("UPDATE students SET FirstName = ?, LastName = ?, Serie = ?, SerieType = ?, Age = ?, email = ? WHERE ID = ?;")
+
+	if err != nil {
+		panic(err.Error())
+	}
+
+	_, err = editStudent.Exec(firstName, lastName, serie, serieType, age, email, studentID)
+
+	if err != nil {
+		panic(err.Error())
+	}
 
 }
 

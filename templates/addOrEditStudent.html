@@ -10,15 +10,15 @@
       <i class="bi-arrow-left-circle text-primary" style="margin-right: 12px;"></i>
     </a>
 
-    {{if eq .Operation "edit"}}
+    {{if eq .Action "create"}}
     Editar
-    {{else if eq .Operation "add"}}
+    {{else if eq .Action "edit"}}
     Adicionar
     {{else}}
     Operação Desconhecida
-    {{end}} 
-    
+    {{end}}
     aluno
+
   </h3>
 </div>
 
@@ -26,26 +26,32 @@
   <div class="row justify-content-center">
     <div class="col-6">
 
-      <form method="POST" action="create">
+      <form method="POST" action="createOrEdit" class="mb-3">
+
+        <input type="hidden" class="form-control" name="ID" required value="{{.Student.ID}}">
 
         <div class="mb-3">
           <label for="formGroupExampleInput" class="form-label">Nome</label>
-          <input type="text" class="form-control" name="firstName" placeholder="Primeiro nome">
+          <input type="text" class="form-control" name="firstName" placeholder="Primeiro nome" required
+            value="{{.Student.FirstName}}">
         </div>
 
         <div class="mb-3">
           <label for="formGroupExampleInput2" class="form-label">Sobrenome</label>
-          <input type="text" class="form-control" name="lastName" placeholder="Sobrenome">
+          <input type="text" class="form-control" name="lastName" placeholder="Sobrenome" required
+            value="{{.Student.LastName}}">
         </div>
 
         <div class="mb-3">
           <label for="formGroupExampleInput2" class="form-label">Serie</label>
-          <input type="number" class="form-control" name="serie" placeholder="Série">
+          <input type="number" class="form-control" name="serie" placeholder="Série" required {{if ne .Student.Serie
+            0}}value="{{.Student.Serie}}" {{end}}>
         </div>
 
         <div class="mb-3">
           <label for="selectSerieType" class="form-label">Ensino</label>
-          <select class="form-select" aria-label="Default select example" name="serieType">
+          <select class="form-select" aria-label="Default select example" name="serieType" required
+            value="{{.Student.SerieType}}">
             <option value="Fundamental">Fundamental</option>
             <option value="Médio">Médio</option>
           </select>
@@ -53,21 +59,32 @@
 
         <div class="mb-3">
           <label for="formGroupExampleInput2" class="form-label">Idade</label>
-          <input type="number" class="form-control" name="age" placeholder="Digite aqui a sua idade">
+          <input type="number" class="form-control" name="age" placeholder="Digite aqui a sua idade" required {{if ne
+            .Student.Age 0}}value="{{.Student.Age}}" {{end}}>
         </div>
 
         <div class="mb-3">
           <label for="email" class="form-label">E-mail</label>
-          <input type="text" class="form-control" name="email" placeholder="Escolha o seu melhor e-mail">
+          <input type="text" class="form-control" name="email" placeholder="Escolha o seu melhor e-mail" required
+            value="{{.Student.Email}}">
         </div>
 
         <div class="my-5 d-grid gap-2">
           <button type="submit" class="btn btn-success" value="salvar">
-            Adicionar aluno
+
+            {{if eq .Action "edit"}}
+            Editar
+            {{else if eq .Action "create"}}
+            Adicionar
+            {{else}}
+            Operação Desconhecida
+            {{end}}
+
+            aluno
           </button>
-          <button class="btn btn-danger">
+          <a class="btn btn-danger" type="button" href="/">
             Cancelar
-          </button>
+          </a>
         </div>
 
       </form>

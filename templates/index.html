@@ -14,7 +14,7 @@
   </a>
 </div>
 
-<div class="container mt-3">
+<div class="container my-3">
 
   <div class="card">
     <table class="table table-striped table-hover mb-0 table-responsive">
@@ -37,8 +37,8 @@
           <td>{{.SerieType}}</td>
           <td>{{.Email}}</td>
           <td class="d-md-flex justify-content-evenly">
-            <a class="btn btn-warning" href="/edit-student?id=1" role="button">Editar</a>
-            <a class="btn btn-primary" href="/student?id=1" role="button">Visualizar</a>
+            <a class="btn btn-warning" href="/edit-student?id={{.ID}}" role="button">Editar</a>
+            <a class="btn btn-primary" href="/student?id={{.ID}}" role="button">Visualizar</a>
           </td>
         </tr>
         {{end}}

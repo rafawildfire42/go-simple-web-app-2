@@ -9,14 +9,15 @@ import (
 )
 
 type Data struct {
-	Operation string
+	Action  string
+	Student models.Student
 }
 
 var temp = template.Must(template.ParseGlob("templates/*.html"))
 
 func IndexView(w http.ResponseWriter, r *http.Request) {
 
-	students := models.GetStudents()
+	students := models.ListStudents()
 
 	temp.ExecuteTemplate(w, "Index", students)
 
@@ -32,27 +33,35 @@ func StudentView(w http.ResponseWriter, r *http.Request) {
 
 }
 
-func EditStudentView(w http.ResponseWriter, r *http.Request) {
+func PageEditStudentView(w http.ResponseWriter, r *http.Request) {
+
+	studentID := r.URL.Query().Get("id")
+
+	student := models.GetStudent(studentID)
 
 	data := Data{
-		Operation: "edit",
+		Action:  "edit",
+		Student: student,
 	}
 
 	temp.ExecuteTemplate(w, "AddOrEditStudent", data)
 
 }
 
-func AddStudentView(w http.ResponseWriter, r *http.Request) {
+func PageCreateStudentView(w http.ResponseWriter, r *http.Request) {
+
+	student := models.Student{}
 
 	data := Data{
-		Operation: "add",
+		Action:  "create",
+		Student: student,
 	}
 
 	temp.ExecuteTemplate(w, "AddOrEditStudent", data)
 
 }
 
-func CreateStudentView(w http.ResponseWriter, r *http.Request) {
+func CreateOrEditStudentView(w http.ResponseWriter, r *http.Request) {
 
 	if r.Method == "POST" {
 		firstName := r.FormValue("firstName")
@@ -69,7 +78,15 @@ func CreateStudentView(w http.ResponseWriter, r *http.Request) {
 			fmt.Println("Erro durante a conversão.")
 		}
 
-		models.CreateStudent(firstName, lastName, serieType, email, serieConverted, ageConverted)
+		studentID := r.FormValue("ID")
+
+		fmt.Println(studentID)
+
+		if studentID != "" {
+			models.EditStudent(firstName, lastName, serieType, email, studentID, serieConverted, ageConverted)
+		} else {
+			models.CreateStudent(firstName, lastName, serieType, email, serieConverted, ageConverted)
+		}
 
 	}
 
