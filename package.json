@@ -1,0 +1,9 @@
+{
+  "scripts": {
+    "build": "go build",
+    "start": "main"
+  },
+  "dependencies": {
+    "@vercel/go": "*"
+  }
+}
