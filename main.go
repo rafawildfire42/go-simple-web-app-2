@@ -6,6 +6,7 @@ import (
 	"vuewebapp/routes"
 
 	"github.com/joho/godotenv"
+	. "github.com/tbxark/g4vercel"
 )
 
 func init() {
