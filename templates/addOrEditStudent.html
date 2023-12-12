@@ -58,6 +58,15 @@
         </div>
 
         <div class="mb-3">
+          <label for="selectSerieType" class="form-label">Sexo</label>
+          <select class="form-select" aria-label="Default select example" name="gender" required
+            value="{{.Student.Gender}}">
+            <option value="M">Masculino</option>
+            <option value="F">Feminino</option>
+          </select>
+        </div>
+
+        <div class="mb-3">
           <label for="formGroupExampleInput2" class="form-label">Idade</label>
           <input type="number" class="form-control" name="age" placeholder="Digite aqui a sua idade" required {{if ne
             .Student.Age 0}}value="{{.Student.Age}}" {{end}}>

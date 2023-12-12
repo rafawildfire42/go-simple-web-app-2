@@ -24,15 +24,20 @@ func IndexView(w http.ResponseWriter, r *http.Request) {
 }
 
 func StudentView(w http.ResponseWriter, r *http.Request) {
-
 	id := r.URL.Query().Get("id")
 
-	// discplines := models.GetDisciplines(id)
-
+	disciplines := models.GetDisciplines(id)
 	student := models.GetStudent(id)
 
-	temp.ExecuteTemplate(w, "Student", student)
+	data := struct {
+		Disciplines []models.Discipline
+		Student     models.Student
+	}{
+		Disciplines: disciplines,
+		Student:     student,
+	}
 
+	temp.ExecuteTemplate(w, "Student", data)
 }
 
 func PageEditStudentView(w http.ResponseWriter, r *http.Request) {
@@ -82,6 +87,7 @@ func CreateOrEditStudentView(w http.ResponseWriter, r *http.Request) {
 		serieType := r.FormValue("serieType")
 		age := r.FormValue("age")
 		email := r.FormValue("email")
+		gender := r.FormValue("gender")
 
 		ageConverted, errAge := strconv.Atoi(age)
 		serieConverted, errSerie := strconv.Atoi(serie)
@@ -92,10 +98,12 @@ func CreateOrEditStudentView(w http.ResponseWriter, r *http.Request) {
 
 		studentID := r.FormValue("ID")
 
+		fmt.Println(firstName, lastName, serieType, email, studentID, gender, serieConverted, ageConverted)
+
 		if studentID != "0" {
-			models.EditStudent(firstName, lastName, serieType, email, studentID, serieConverted, ageConverted)
+			models.EditStudent(firstName, lastName, serieType, email, studentID, gender, serieConverted, ageConverted)
 		} else {
-			models.CreateStudent(firstName, lastName, serieType, email, serieConverted, ageConverted)
+			models.CreateStudent(firstName, lastName, serieType, email, gender, serieConverted, ageConverted)
 		}
 
 	}

@@ -3,6 +3,7 @@ package models
 import (
 	"database/sql"
 	"fmt"
+	"strconv"
 	"vuewebapp/db"
 )
 
@@ -14,6 +15,7 @@ type Student struct {
 	SerieType string
 	Age       int
 	Email     string
+	Gender    string
 }
 
 type Discipline struct {
@@ -34,8 +36,8 @@ func GetStudent(studentID string) Student {
 	var student Student
 
 	var (
-		firstName, lastName, serieType, email string
-		id, serie, age                        int
+		firstName, lastName, serieType, email, gender string
+		id, serie, age                                int
 	)
 
 	query := fmt.Sprintf("SELECT * FROM students WHERE id=%s", studentID)
@@ -47,7 +49,7 @@ func GetStudent(studentID string) Student {
 	}
 
 	if studentRows.Next() {
-		studentRows.Scan(&id, &firstName, &lastName, &serie, &serieType, &age, &email)
+		studentRows.Scan(&id, &firstName, &lastName, &serie, &serieType, &age, &email, &gender)
 
 		student.ID = id
 		student.FirstName = firstName
@@ -56,9 +58,10 @@ func GetStudent(studentID string) Student {
 		student.SerieType = serieType
 		student.Age = age
 		student.Email = email
+		student.Gender = gender
 
 	} else {
-		fmt.Println("Nenhum estudante encontrado para o ID 4.")
+		fmt.Println("Nenhum estudante encontrado.")
 	}
 
 	return student
@@ -81,11 +84,11 @@ func ListStudents() []Student {
 
 	for allStudents.Next() {
 		var (
-			firstName, lastName, serieType, email string
-			id, serie, age                        int
+			firstName, lastName, serieType, email, gender string
+			id, serie, age                                int
 		)
 
-		err := allStudents.Scan(&id, &firstName, &lastName, &serie, &serieType, &age, &email)
+		err := allStudents.Scan(&id, &firstName, &lastName, &serie, &serieType, &age, &email, &gender)
 
 		if err != nil {
 			panic(err.Error())
@@ -98,6 +101,7 @@ func ListStudents() []Student {
 		student.SerieType = serieType
 		student.Age = age
 		student.Email = email
+		student.Gender = gender
 
 		students = append(students, student)
 
@@ -106,7 +110,7 @@ func ListStudents() []Student {
 	return students
 }
 
-func CreateStudent(firstName, lastName, serieType, email string, serie, age int) {
+func CreateStudent(firstName, lastName, serieType, email, gender string, serie, age int) {
 
 	dbData := db.ConnectDatabase()
 	defer dbData.Close()
@@ -114,7 +118,7 @@ func CreateStudent(firstName, lastName, serieType, email string, serie, age int)
 	var createStudent *sql.Stmt
 	var err error
 
-	createStudent, err = dbData.Prepare("INSERT INTO students (FirstName, LastName, Serie, SerieType, Age, email) VALUES (?, ?, ?, ?, ?, ?);")
+	createStudent, err = dbData.Prepare("INSERT INTO students (FirstName, LastName, Serie, SerieType, Age, Email, Gender) VALUES (?, ?, ?, ?, ?, ?);")
 
 	if err != nil {
 		panic(err.Error())
@@ -128,7 +132,7 @@ func CreateStudent(firstName, lastName, serieType, email string, serie, age int)
 
 }
 
-func EditStudent(firstName, lastName, serieType, email, studentID string, serie, age int) {
+func EditStudent(firstName, lastName, serieType, email, studentID, gender string, serie, age int) {
 
 	dbData := db.ConnectDatabase()
 	defer dbData.Close()
@@ -136,13 +140,13 @@ func EditStudent(firstName, lastName, serieType, email, studentID string, serie,
 	var editStudent *sql.Stmt
 	var err error
 
-	editStudent, err = dbData.Prepare("UPDATE students SET FirstName = ?, LastName = ?, Serie = ?, SerieType = ?, Age = ?, email = ? WHERE ID = ?;")
+	editStudent, err = dbData.Prepare("UPDATE students SET FirstName = ?, LastName = ?, Serie = ?, SerieType = ?, Age = ?, Email = ?, Gender = ? WHERE ID = ?;")
 
 	if err != nil {
 		panic(err.Error())
 	}
 
-	_, err = editStudent.Exec(firstName, lastName, serie, serieType, age, email, studentID)
+	_, err = editStudent.Exec(firstName, lastName, serie, serieType, age, email, gender, studentID)
 
 	if err != nil {
 		panic(err.Error())
@@ -169,10 +173,12 @@ func DeleteStudent(studentID string) {
 
 }
 
-func GetDisciplines(studentID int) []Discipline {
+func GetDisciplines(studentID string) []Discipline {
+
+	studentID1, _ := strconv.Atoi(studentID)
 
 	discipline := []Discipline{
-		{ID: 1, Title: "Matemática", Score1: 9, Score2: 10, Score3: 10, Score4: 9, FinalMean: 9.5, StudentID: studentID},
+		{ID: 1, Title: "Matemática", Score1: 9, Score2: 10, Score3: 10, Score4: 9, FinalMean: 9.5, StudentID: studentID1},
 	}
 
 	return discipline
