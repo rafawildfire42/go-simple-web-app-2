@@ -82,9 +82,9 @@
           <button type="submit" class="btn btn-success" value="salvar">
 
             {{if eq .Action "edit"}}
-            Adicionar
-            {{else if eq .Action "create"}}
             Editar
+            {{else if eq .Action "create"}}
+            Adicionar
             {{else}}
             Operação Desconhecida
             {{end}}
