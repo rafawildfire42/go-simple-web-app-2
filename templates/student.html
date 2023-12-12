@@ -4,17 +4,16 @@
 
 {{template "_nav"}}
 
-<div class="container mt-3">
-  <h3>
+<div class="container mt-5">
+  <h3 class="text-center">
     <a href="/" class="d-inline-flex link-body-emphasis text-decoration-none">
       <i class="bi-arrow-left-circle text-primary" style="margin-right: 12px;"></i>
     </a>
-    Perfil do aluno
+    Perfil do Aluno
   </h3>
 </div>
 
-<div class="container mt-3">
-
+<div class="container mt-4">
   <div class="row justify-content-center">
 
     <div class="col-12 col-sm-5 mb-5">
@@ -22,40 +21,31 @@
         <img {{ if eq .Student.Gender "M" }} src="/assets/images/Mstudent.png" {{ else }}
           src="/assets/images/Fstudent.png" {{ end }} class="card-img-top mt-3">
         <div class="card-body">
-
-          <span class="card-text fw-bold">Nome:</span>
-          <span class="card-text">{{ .Student.FirstName }} {{ .Student.LastName }}</span><br>
-
-          <span class="card-text fw-bold">Email:</span>
-          <span class="card-text">{{ .Student.Email }}</span><br>
-
-          <span class="card-text fw-bold">Idade:</span>
-          <span class="card-text">{{ .Student.Age }} anos</span><br>
-
-          <span class="card-text fw-bold">Série:</span>
-          <span class="card-text">{{ .Student.Serie }}ª série - {{ .Student.SerieType }}</span><br>
-
+          <p class="card-text fw-bold">Nome: {{ .Student.FirstName }} {{ .Student.LastName }}</p>
+          <p class="card-text fw-bold">Email: {{ .Student.Email }}</p>
+          <p class="card-text fw-bold">Idade: {{ .Student.Age }} anos</p>
+          <p class="card-text fw-bold">Série: {{ .Student.Serie }}ª série - {{ .Student.SerieType }}</p>
         </div>
       </div>
     </div>
+
     <div class="col-12 col-sm-8">
-
       {{ if .Subject.Title }}
-
+      <h4 class="mb-3">Desempenho nas Disciplinas</h4>
       <table class="table">
         <thead>
           <tr>
             <th scope="col">Disciplina</th>
-            <th scope="col">1º bim.</th>
-            <th scope="col">2º bim.</th>
-            <th scope="col">3º bim.</th>
-            <th scope="col">4º bim.</th>
-            <th scope="col">Média final</th>
+            <th scope="col">1º Bim.</th>
+            <th scope="col">2º Bim.</th>
+            <th scope="col">3º Bim.</th>
+            <th scope="col">4º Bim.</th>
+            <th scope="col">Média Final</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <th scope="row">{{.Subject.Title}}</th>
+            <td>{{.Subject.Title}}</td>
             <td>{{ .Subject.Score1 }}</td>
             <td>{{ .Subject.Score2 }}</td>
             <td>{{ .Subject.Score3 }}</td>
@@ -64,14 +54,11 @@
           </tr>
         </tbody>
       </table>
-
       {{ else }}
-
-      Este aluno não possui disciplinas cadastradas. <a href="/add-subject?studentID={{ .Student.ID }}">Clique aqui</a> para adicionar uma
-      disciplina para este aluno.
-
+      <p class="lead">Este aluno não possui disciplinas cadastradas.
+        <a href="/add-subject?studentID={{ .Student.ID }}">Clique aqui</a> para adicionar uma disciplina para este aluno.
+      </p>
       {{ end }}
-
     </div>
 
   </div>

@@ -4,53 +4,50 @@
 
 {{template "_nav"}}
 
-<div class="container mt-3 d-grid gap-2 d-md-flex justify-content-between">
+<div class="container mt-4 d-flex justify-content-between align-items-center">
   <h3>
     <i class="bi-person-lines-fill" style="margin-right: 12px;"></i>
-    Relação de alunos
+    Relação de Alunos
   </h3>
-  <!-- <a href="/add-student" class="btn btn-secondary">
-    Adicionar aluno
-  </a> -->
   <button onclick="addStudent('{{len . }}')" class="btn btn-secondary">
-    Adicionar aluno
+    Adicionar Aluno
   </button>
 </div>
 
 <div class="container mt-3 mb-5">
 
   <div class="card">
-    <table class="table table-striped table-hover mb-0 table-responsive">
-      <thead>
-        <tr>
-          <th>*</th>
-          <th>Aluno</th>
-          <th>Série</th>
-          <th>Ensino</th>
-          <th>Email</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody class="align-middle">
-        {{range .}}
-        <tr>
-          <td>{{.ID}}</td>
-          <td>{{.FirstName}} {{.LastName}}</td>
-          <td>{{.Serie}}</td>
-          <td>{{.SerieType}}</td>
-          <td>{{.Email}}</td>
-          <td class="d-md-flex justify-content-evenly">
-            <a class="btn btn-warning" href="/edit-student?id={{.ID}}" role="button">Editar</a>
-            <a class="btn btn-primary" href="/student?id={{.ID}}" role="button">Visualizar</a>
-            <button class="btn btn-danger" onclick="onDelete('{{.ID}}')" role="button">Deletar</button>
-          </td>
-        </tr>
-        {{end}}
-      </tbody>
-    </table>
+    <div class="table-responsive">
+      <table class="table table-striped table-hover mb-0">
+        <thead>
+          <tr>
+            <th>*</th>
+            <th>Aluno</th>
+            <th>Série</th>
+            <th>Ensino</th>
+            <th>Email</th>
+            <th class="text-center">Ações</th>
+          </tr>
+        </thead>
+        <tbody class="align-middle">
+          {{range .}}
+          <tr>
+            <td>{{.ID}}</td>
+            <td>{{.FirstName}} {{.LastName}}</td>
+            <td>{{.Serie}}</td>
+            <td>{{.SerieType}}</td>
+            <td>{{.Email}}</td>
+            <td class="d-flex gap-2 justify-content-evenly">
+              <a class="btn btn-warning" href="/edit-student?id={{.ID}}" role="button">Editar</a>
+              <a class="btn btn-primary" href="/student?id={{.ID}}" role="button">Visualizar</a>
+              <button class="btn btn-danger" onclick="onDelete('{{.ID}}')" role="button">Deletar</button>
+            </td>
+          </tr>
+          {{end}}
+        </tbody>
+      </table>
+    </div>
   </div>
-
-
 
 </div>
 

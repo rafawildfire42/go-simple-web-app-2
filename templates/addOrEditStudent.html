@@ -4,52 +4,50 @@
 
 {{template "_nav"}}
 
-<div class="container mt-3">
-  <h3>
+<div class="container mt-5">
+  <h3 class="text-center">
     <a href="/" class="d-inline-flex link-body-emphasis text-decoration-none">
       <i class="bi-arrow-left-circle text-primary" style="margin-right: 12px;"></i>
     </a>
 
     {{if eq .Action "create"}}
-    Adicionar
+    Adicionar Aluno
     {{else if eq .Action "edit"}}
-    Editar
+    Editar Aluno
     {{else}}
     Operação Desconhecida
     {{end}}
-    aluno
-
   </h3>
 </div>
 
-<div class="container mt-3">
+<div class="container mt-4">
   <div class="row justify-content-center">
-    <div class="col-6">
+    <div class="col-12 col-md-6">
 
-      <form method="POST" action="createOrEdit" class="mb-3">
+      <form method="POST" action="createOrEdit" class="mb-4 p-4 border rounded shadow">
 
         <input type="hidden" class="form-control" name="ID" required value="{{.Student.ID}}">
 
         <div class="mb-3">
-          <label for="formGroupExampleInput" class="form-label">Nome</label>
+          <label class="form-label">Nome</label>
           <input type="text" class="form-control" name="firstName" placeholder="Primeiro nome" required maxlength="12"
             value="{{.Student.FirstName}}">
         </div>
 
         <div class="mb-3">
-          <label for="formGroupExampleInput2" class="form-label">Sobrenome</label>
+          <label class="form-label">Sobrenome</label>
           <input type="text" class="form-control" name="lastName" placeholder="Sobrenome" required maxlength="20"
             value="{{.Student.LastName}}">
         </div>
 
         <div class="mb-3">
-          <label for="formGroupExampleInput2" class="form-label">Serie</label>
+          <label class="form-label">Série</label>
           <input type="number" class="form-control" name="serie" placeholder="Série" min="1" max="10" required {{if ne
             .Student.Serie 0}}value="{{.Student.Serie}}" {{end}}>
         </div>
 
         <div class="mb-3">
-          <label for="selectSerieType" class="form-label">Ensino</label>
+          <label class="form-label">Ensino</label>
           <select class="form-select" aria-label="Default select example" name="serieType" required maxlength="12"
             value="{{.Student.SerieType}}">
             <option value="Fundamental">Fundamental</option>
@@ -58,7 +56,7 @@
         </div>
 
         <div class="mb-3">
-          <label for="selectSerieType" class="form-label">Sexo</label>
+          <label class="form-label">Sexo</label>
           <select class="form-select" aria-label="Default select example" name="gender" required maxlength="12"
             value="{{.Student.Gender}}">
             <option value="M">Masculino</option>
@@ -67,29 +65,26 @@
         </div>
 
         <div class="mb-3">
-          <label for="formGroupExampleInput2" class="form-label">Idade</label>
+          <label class="form-label">Idade</label>
           <input type="number" class="form-control" name="age" placeholder="Digite aqui a sua idade" min="1" max="99"
             required {{if ne .Student.Age 0}}value="{{.Student.Age}}" {{end}}>
         </div>
 
         <div class="mb-3">
-          <label for="email" class="form-label">E-mail</label>
+          <label class="form-label">E-mail</label>
           <input type="text" class="form-control" name="email" placeholder="Escolha o seu melhor e-mail" required
             maxlength="34" value="{{.Student.Email}}">
         </div>
 
-        <div class="my-5 d-grid gap-2">
-          <button type="submit" class="btn btn-success" value="salvar">
-
+        <div class="my-4 d-grid gap-2">
+          <button type="submit" class="btn btn-success">
             {{if eq .Action "edit"}}
-            Editar
+            Editar Aluno
             {{else if eq .Action "create"}}
-            Adicionar
+            Adicionar Aluno
             {{else}}
             Operação Desconhecida
             {{end}}
-
-            aluno
           </button>
           <a class="btn btn-danger" type="button" href="/">
             Cancelar

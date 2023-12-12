@@ -4,29 +4,27 @@
 
 {{template "_nav"}}
 
-<div class="container mt-3">
-  <h3>
+<div class="container mt-5">
+  <h3 class="text-center">
     <a href="/" class="d-inline-flex link-body-emphasis text-decoration-none">
       <i class="bi-arrow-left-circle text-primary" style="margin-right: 12px;"></i>
     </a>
 
     {{if eq .Action "create"}}
-    Adicionar
+    Adicionar Disciplina
     {{else if eq .Action "edit"}}
-    Editar
+    Editar Disciplina
     {{else}}
     Operação Desconhecida
     {{end}}
-    disciplina
-
   </h3>
 </div>
 
-<div class="container mt-3">
+<div class="container mt-4">
   <div class="row justify-content-center">
     <div class="col-12 col-md-6">
 
-      <form method="POST" action="createOrEditSubject" class="mb-3">
+      <form method="POST" action="createOrEditSubject" class="mb-4 p-4 border rounded shadow">
 
         <input type="hidden" class="form-control" name="StudentID" required value="{{ .StudentID }}">
 
@@ -60,18 +58,15 @@
           <input type="number" class="form-control" name="Score4" placeholder="Nota 4" min="1" max="10" required>
         </div>
 
-        <div class="my-5 d-grid gap-2">
-          <button type="submit" class="btn btn-success" value="salvar">
-
+        <div class="my-4 d-grid gap-2">
+          <button type="submit" class="btn btn-success">
             {{if eq .Action "edit"}}
-            Editar
+            Editar Disciplina
             {{else if eq .Action "create"}}
-            Adicionar
+            Adicionar Disciplina
             {{else}}
             Operação Desconhecida
             {{end}}
-
-            disciplina
           </button>
           <a class="btn btn-danger" type="button" href="/">
             Cancelar
