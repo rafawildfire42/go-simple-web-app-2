@@ -19,14 +19,8 @@
 
     <div class="col-12 col-sm-5 mb-5">
       <div class="card mx-auto" style="width: 18rem;">
-        <img 
-          {{ if eq .Student.Gender "M" }}
-            src="/assets/images/Mstudent.png" 
-          {{ else }}
-            src="/assets/images/Fstudent.png" 
-          {{ end }}
-
-          class="card-img-top mt-3">
+        <img {{ if eq .Student.Gender "M" }} src="/assets/images/Mstudent.png" {{ else }}
+          src="/assets/images/Fstudent.png" {{ end }} class="card-img-top mt-3">
         <div class="card-body">
 
           <span class="card-text fw-bold">Nome:</span>
@@ -44,8 +38,10 @@
         </div>
       </div>
     </div>
-
     <div class="col-12 col-sm-8">
+
+      {{ if .Subject.Title }}
+
       <table class="table">
         <thead>
           <tr>
@@ -58,18 +54,24 @@
           </tr>
         </thead>
         <tbody>
-          {{range .Subjects}}
           <tr>
-            <th scope="row">{{.Title}}</th>
-            <td>{{.Score1}}</td>
-            <td>{{.Score2}}</td>
-            <td>{{.Score3}}</td>
-            <td>{{.Score4}}</td>
-            <td>{{.FinalMean}}</td>
+            <th scope="row">{{.Subject.Title}}</th>
+            <td>{{.Subject.Score1}}</td>
+            <td>{{.Subject.Score2}}</td>
+            <td>{{.Subject.Score3}}</td>
+            <td>{{.Subject.Score4}}</td>
+            <td>1</td>
           </tr>
-          {{end}}
         </tbody>
       </table>
+
+      {{ else }}
+
+      Este aluno não possui disciplinas cadastradas. <a href="/add-subject">Clique aqui</a> para adicionar uma
+      disciplina para este aluno.
+
+      {{ end }}
+
     </div>
 
   </div>

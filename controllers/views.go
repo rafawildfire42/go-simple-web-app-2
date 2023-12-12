@@ -26,15 +26,15 @@ func IndexView(w http.ResponseWriter, r *http.Request) {
 func StudentView(w http.ResponseWriter, r *http.Request) {
 	id := r.URL.Query().Get("id")
 
-	subjects := models.GetDisciplines(id)
+	subject := models.GetDiscipline(id)
 	student := models.GetStudent(id)
 
 	data := struct {
-		Subjects []models.Subject
-		Student  models.Student
+		Subject models.Subject
+		Student models.Student
 	}{
-		Subjects: subjects,
-		Student:  student,
+		Subject: subject,
+		Student: student,
 	}
 
 	temp.ExecuteTemplate(w, "Student", data)
@@ -65,6 +65,19 @@ func PageCreateStudentView(w http.ResponseWriter, r *http.Request) {
 	}
 
 	temp.ExecuteTemplate(w, "AddOrEditStudent", data)
+
+}
+
+func PageAddSubjectView(w http.ResponseWriter, r *http.Request) {
+
+	student := models.Student{}
+
+	data := Data{
+		Action:  "create",
+		Student: student,
+	}
+
+	temp.ExecuteTemplate(w, "AddOrEditSubject", data)
 
 }
 

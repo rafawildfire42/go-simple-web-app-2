@@ -173,12 +173,32 @@ func DeleteStudent(studentID string) {
 
 }
 
-func GetDisciplines(studentID string) []Subject {
+func GetDiscipline(studentID string) Subject {
 
-	studentID1, _ := strconv.Atoi(studentID)
+	var id int
+	var score1, score2, score3, score4 float64
+	var subject Subject
 
-	subject := []Subject{
-		{ID: 1, Title: "Matemática", Score1: 9, Score2: 10, Score3: 10, Score4: 9, FinalMean: 9.5, StudentID: studentID1},
+	dbData := db.ConnectDatabase()
+	defer dbData.Close()
+
+	query := fmt.Sprintf("SELECT * FROM subjects WHERE StudentID=%s", studentID)
+
+	dbData.Query(query)
+
+	studentRows, _ := dbData.Query(query)
+
+	for studentRows.Next() {
+		studentID, _ := strconv.Atoi(studentID)
+		studentRows.Scan(&id, &score1, &score2, &score3, &score4, &studentID)
+
+		subject.ID = id
+		subject.Score1 = score1
+		subject.Score2 = score1
+		subject.Score3 = score1
+		subject.Score4 = score1
+		subject.StudentID = studentID
+
 	}
 
 	return subject
