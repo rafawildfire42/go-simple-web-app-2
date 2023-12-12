@@ -18,7 +18,7 @@ type Student struct {
 	Gender    string
 }
 
-type Discipline struct {
+type Subject struct {
 	ID        int
 	Title     string
 	Score1    float64
@@ -173,14 +173,14 @@ func DeleteStudent(studentID string) {
 
 }
 
-func GetDisciplines(studentID string) []Discipline {
+func GetDisciplines(studentID string) []Subject {
 
 	studentID1, _ := strconv.Atoi(studentID)
 
-	discipline := []Discipline{
+	subject := []Subject{
 		{ID: 1, Title: "Matemática", Score1: 9, Score2: 10, Score3: 10, Score4: 9, FinalMean: 9.5, StudentID: studentID1},
 	}
 
-	return discipline
+	return subject
 
 }

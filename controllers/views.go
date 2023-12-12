@@ -26,15 +26,15 @@ func IndexView(w http.ResponseWriter, r *http.Request) {
 func StudentView(w http.ResponseWriter, r *http.Request) {
 	id := r.URL.Query().Get("id")
 
-	disciplines := models.GetDisciplines(id)
+	subjects := models.GetDisciplines(id)
 	student := models.GetStudent(id)
 
 	data := struct {
-		Disciplines []models.Discipline
-		Student     models.Student
+		Subjects []models.Subject
+		Student  models.Student
 	}{
-		Disciplines: disciplines,
-		Student:     student,
+		Subjects: subjects,
+		Student:  student,
 	}
 
 	temp.ExecuteTemplate(w, "Student", data)
