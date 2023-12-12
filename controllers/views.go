@@ -123,12 +123,46 @@ func CreateOrEditStudentView(w http.ResponseWriter, r *http.Request) {
 
 }
 
-func CreateOrEditSubjectView(w http.ResponseWriter, r *http.Request) {
+// func CreateOrEditSubjectView(w http.ResponseWriter, r *http.Request) {
 
-	if r.Method == "POST" {
+// 	if r.Method == "POST" {
 
-	}
+// 		title := r.FormValue("title")
+// 		score1Str := r.FormValue("score1")
+// 		score2Str := r.FormValue("score2")
+// 		score3Str := r.FormValue("score3")
+// 		score4Str := r.FormValue("score4")
 
-	http.Redirect(w, r, "/", 301)
+// 		score1, err := strconv.ParseFloat(score1Str, 64)
+// 		if err != nil {
+// 			fmt.Println("Erro durante a conversão do score1:", err)
+// 		}
 
-}
+// 		score2, err := strconv.ParseFloat(score2Str, 64)
+// 		if err != nil {
+// 			fmt.Println("Erro durante a conversão do score2:", err)
+// 		}
+
+// 		score3, err := strconv.ParseFloat(score3Str, 64)
+// 		if err != nil {
+// 			fmt.Println("Erro durante a conversão do score3:", err)
+// 		}
+
+// 		score4, err := strconv.ParseFloat(score4Str, 64)
+// 		if err != nil {
+// 			fmt.Println("Erro durante a conversão do score4:", err)
+// 		}
+
+// 		studentID := r.FormValue("ID")
+
+// 		if studentID != "0" {
+// 			models.EditSubject(firstName, lastName, serieType, email, studentID, gender, serieConverted, ageConverted)
+// 		} else {
+// 			models.CreateSubject(firstName, lastName, serieType, email, gender, serieConverted, ageConverted)
+// 		}
+
+// 	}
+
+// 	http.Redirect(w, r, "/", 301)
+
+// }

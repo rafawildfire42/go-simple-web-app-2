@@ -3,7 +3,6 @@ package models
 import (
 	"database/sql"
 	"fmt"
-	"strconv"
 	"vuewebapp/db"
 )
 
@@ -16,17 +15,6 @@ type Student struct {
 	Age       int
 	Email     string
 	Gender    string
-}
-
-type Subject struct {
-	ID        int
-	Title     string
-	Score1    float64
-	Score2    float64
-	Score3    float64
-	Score4    float64
-	FinalMean float64
-	StudentID int
 }
 
 func GetStudent(studentID string) Student {
@@ -170,37 +158,5 @@ func DeleteStudent(studentID string) {
 	if err != nil {
 		panic(err.Error())
 	}
-
-}
-
-func GetDiscipline(studentID string) Subject {
-
-	var id int
-	var score1, score2, score3, score4 float64
-	var subject Subject
-
-	dbData := db.ConnectDatabase()
-	defer dbData.Close()
-
-	query := fmt.Sprintf("SELECT * FROM subjects WHERE StudentID=%s", studentID)
-
-	dbData.Query(query)
-
-	studentRows, _ := dbData.Query(query)
-
-	for studentRows.Next() {
-		studentID, _ := strconv.Atoi(studentID)
-		studentRows.Scan(&id, &score1, &score2, &score3, &score4, &studentID)
-
-		subject.ID = id
-		subject.Score1 = score1
-		subject.Score2 = score1
-		subject.Score3 = score1
-		subject.Score4 = score1
-		subject.StudentID = studentID
-
-	}
-
-	return subject
 
 }
