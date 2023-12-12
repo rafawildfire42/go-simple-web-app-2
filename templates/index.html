@@ -38,8 +38,8 @@
             <td>{{.SerieType}}</td>
             <td>{{.Email}}</td>
             <td class="d-flex gap-2 justify-content-evenly">
-              <a class="btn btn-warning" href="/edit-student?id={{.ID}}" role="button">Editar</a>
               <a class="btn btn-primary" href="/student?id={{.ID}}" role="button">Visualizar</a>
+              <a class="btn btn-warning" href="/edit-student?id={{.ID}}" role="button">Editar</a>
               <button class="btn btn-danger" onclick="onDelete('{{.ID}}')" role="button">Deletar</button>
             </td>
           </tr>
