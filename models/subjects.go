@@ -28,8 +28,6 @@ func GetDisciplineByStudentID(studentID string) Subject {
 
 	query := fmt.Sprintf("SELECT * FROM subjects WHERE StudentID=%s", studentID)
 
-	fmt.Println(query)
-
 	rows, err := dbData.Query(query)
 	if err != nil {
 		log.Fatal(err)

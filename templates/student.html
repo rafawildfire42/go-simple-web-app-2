@@ -46,9 +46,9 @@
       </div>
     </div>
 
-    <div class="col-12 col-sm-8">
+    <div class="col-12 col-sm-8 mb-5">
       {{ if .Subject.Title }}
-      <h4 class="mb-3">Desempenho nas Disciplinas</h4>
+      <h4 class="mb-3">Desempenho nas disciplinas</h4>
       <table class="table">
         <thead>
           <tr>
@@ -67,7 +67,7 @@
             <td>{{ .Subject.Score2 }}</td>
             <td>{{ .Subject.Score3 }}</td>
             <td>{{ .Subject.Score4 }}</td>
-            <td>1</td>
+            <td>{{ div (add .Subject.Score1 .Subject.Score2 .Subject.Score3 .Subject.Score4) 4 }}</td>
           </tr>
         </tbody>
       </table>
