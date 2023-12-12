@@ -25,11 +25,13 @@ func IndexView(w http.ResponseWriter, r *http.Request) {
 
 func StudentView(w http.ResponseWriter, r *http.Request) {
 
-	id, _ := strconv.Atoi(r.URL.Query().Get("id"))
+	id := r.URL.Query().Get("id")
 
-	discplines := models.GetDisciplines(id)
+	// discplines := models.GetDisciplines(id)
 
-	temp.ExecuteTemplate(w, "Student", discplines)
+	student := models.GetStudent(id)
+
+	temp.ExecuteTemplate(w, "Student", student)
 
 }
 

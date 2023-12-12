@@ -17,19 +17,22 @@
 
   <div class="row justify-content-center">
 
-    <div class="col-12 col-sm-4">
+    <div class="col-12 col-sm-5 mb-5">
       <div class="card mx-auto" style="width: 18rem;">
         <img src="/assets/images/student.png" class="card-img-top mt-3">
         <div class="card-body">
 
           <span class="card-text fw-bold">Nome:</span>
-          <span class="card-text">Rafael Fontenele</span><br>
+          <span class="card-text">{{ .FirstName }} {{ .LastName }}</span><br>
 
           <span class="card-text fw-bold">Email:</span>
-          <span class="card-text">rafaelfontenele4@gmail.com</span><br>
+          <span class="card-text">{{ .Email }}</span><br>
 
           <span class="card-text fw-bold">Idade:</span>
-          <span class="card-text">25 anos</span><br>
+          <span class="card-text">{{ .Age }} anos</span><br>
+
+          <span class="card-text fw-bold">Série:</span>
+          <span class="card-text">{{ .Serie }}ª série - {{ .SerieType }}</span><br>
 
         </div>
       </div>
@@ -57,7 +60,7 @@
             <td>{{.Score4}}</td>
             <td>{{.FinalMean}}</td>
           </tr>
-        {{end}}
+          {{end}}
         </tbody>
       </table>
     </div>

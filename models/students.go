@@ -176,4 +176,5 @@ func GetDisciplines(studentID int) []Discipline {
 	}
 
 	return discipline
+
 }
