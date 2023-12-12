@@ -26,65 +26,52 @@
   <div class="row justify-content-center">
     <div class="col-6">
 
-      <form method="POST" action="createOrEdit" class="mb-3">
+      <form method="POST" action="createOrEditSubject" class="mb-3">
 
         <input type="hidden" class="form-control" name="ID" required value="{{.Student.ID}}">
 
         <div class="mb-3">
-          <label for="formGroupExampleInput" class="form-label">Nome</label>
-          <input type="text" class="form-control" name="firstName" placeholder="Primeiro nome" required maxlength="12"
-            value="{{.Student.FirstName}}">
+          <label for="selectSerieType" class="form-label">Disciplina</label>
+          <select class="form-select" aria-label="Default select example" name="serieType" required maxlength="12"
+            value="{{.Student.SerieType}}">
+            <option value="">Escolha uma disciplina</option>
+            <option value="Matemática">Matemática</option>
+            <option value="Português">Português</option>
+            <option value="Física">Física</option>
+          </select>
         </div>
 
         <div class="mb-3">
-          <label for="formGroupExampleInput2" class="form-label">Sobrenome</label>
-          <input type="text" class="form-control" name="lastName" placeholder="Sobrenome" required maxlength="20"
-            value="{{.Student.LastName}}">
-        </div>
-
-        <div class="mb-3">
-          <label for="formGroupExampleInput2" class="form-label">Serie</label>
-          <input type="number" class="form-control" name="serie" placeholder="Série" min="1" max="10" required {{if ne
+          <label for="formGroupExampleInput2" class="form-label">Nota 1</label>
+          <input type="number" class="form-control" name="serie" placeholder="Nota 1" min="1" max="10" required {{if ne
             .Student.Serie 0}}value="{{.Student.Serie}}" {{end}}>
         </div>
 
         <div class="mb-3">
-          <label for="selectSerieType" class="form-label">Ensino</label>
-          <select class="form-select" aria-label="Default select example" name="serieType" required maxlength="12"
-            value="{{.Student.SerieType}}">
-            <option value="Fundamental">Fundamental</option>
-            <option value="Médio">Médio</option>
-          </select>
+          <label for="formGroupExampleInput2" class="form-label">Nota 2</label>
+          <input type="number" class="form-control" name="serie" placeholder="Nota 2" min="1" max="10" required {{if ne
+            .Student.Serie 0}}value="{{.Student.Serie}}" {{end}}>
         </div>
 
         <div class="mb-3">
-          <label for="selectSerieType" class="form-label">Sexo</label>
-          <select class="form-select" aria-label="Default select example" name="gender" required maxlength="12"
-            value="{{.Student.Gender}}">
-            <option value="M">Masculino</option>
-            <option value="F">Feminino</option>
-          </select>
+          <label for="formGroupExampleInput2" class="form-label">Nota 3</label>
+          <input type="number" class="form-control" name="serie" placeholder="Nota 3" min="1" max="10" required {{if ne
+            .Student.Serie 0}}value="{{.Student.Serie}}" {{end}}>
         </div>
 
         <div class="mb-3">
-          <label for="formGroupExampleInput2" class="form-label">Idade</label>
-          <input type="number" class="form-control" name="age" placeholder="Digite aqui a sua idade" min="1" max="99"
-            required {{if ne .Student.Age 0}}value="{{.Student.Age}}" {{end}}>
-        </div>
-
-        <div class="mb-3">
-          <label for="email" class="form-label">E-mail</label>
-          <input type="text" class="form-control" name="email" placeholder="Escolha o seu melhor e-mail" required
-            maxlength="34" value="{{.Student.Email}}">
+          <label for="formGroupExampleInput2" class="form-label">Nota 4</label>
+          <input type="number" class="form-control" name="serie" placeholder="Nota 4" min="1" max="10" required {{if ne
+            .Student.Serie 0}}value="{{.Student.Serie}}" {{end}}>
         </div>
 
         <div class="my-5 d-grid gap-2">
           <button type="submit" class="btn btn-success" value="salvar">
 
             {{if eq .Action "edit"}}
-            Adicionar
-            {{else if eq .Action "create"}}
             Editar
+            {{else if eq .Action "create"}}
+            Adicionar
             {{else}}
             Operação Desconhecida
             {{end}}

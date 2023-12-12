@@ -25,5 +25,6 @@ func HandleRoutes() {
 	http.HandleFunc("/delete", controllers.DeleteStudentView)
 
 	// Apagar, deletar ou editar disciplina
+	http.HandleFunc("/createOrEditSubject", controllers.CreateOrEditSubjectView)
 
 }

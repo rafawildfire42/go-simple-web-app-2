@@ -122,3 +122,13 @@ func CreateOrEditStudentView(w http.ResponseWriter, r *http.Request) {
 	http.Redirect(w, r, "/", 301)
 
 }
+
+func CreateOrEditSubjectView(w http.ResponseWriter, r *http.Request) {
+
+	if r.Method == "POST" {
+
+	}
+
+	http.Redirect(w, r, "/", 301)
+
+}
