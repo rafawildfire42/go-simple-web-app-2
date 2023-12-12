@@ -16,10 +16,10 @@ func IndexView(w http.ResponseWriter, r *http.Request) {
 }
 
 func StudentView(w http.ResponseWriter, r *http.Request) {
-	id := r.URL.Query().Get("id")
+	studentID := r.URL.Query().Get("id")
 
-	subject := models.GetDiscipline(id)
-	student := models.GetStudent(id)
+	subject := models.GetDisciplineByStudentID(studentID)
+	student := models.GetStudent(studentID)
 
 	data := struct {
 		Subject models.Subject
