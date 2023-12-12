@@ -98,8 +98,6 @@ func CreateOrEditStudentView(w http.ResponseWriter, r *http.Request) {
 
 		studentID := r.FormValue("ID")
 
-		fmt.Println(firstName, lastName, serieType, email, studentID, gender, serieConverted, ageConverted)
-
 		if studentID != "0" {
 			models.EditStudent(firstName, lastName, serieType, email, studentID, gender, serieConverted, ageConverted)
 		} else {
