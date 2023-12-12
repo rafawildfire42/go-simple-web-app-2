@@ -56,10 +56,10 @@
         <tbody>
           <tr>
             <th scope="row">{{.Subject.Title}}</th>
-            <td>{{.Subject.Score1}}</td>
-            <td>{{.Subject.Score2}}</td>
-            <td>{{.Subject.Score3}}</td>
-            <td>{{.Subject.Score4}}</td>
+            <td>{{ .Subject.Score1 }}</td>
+            <td>{{ .Subject.Score2 }}</td>
+            <td>{{ .Subject.Score3 }}</td>
+            <td>{{ .Subject.Score4 }}</td>
             <td>1</td>
           </tr>
         </tbody>
@@ -67,7 +67,7 @@
 
       {{ else }}
 
-      Este aluno não possui disciplinas cadastradas. <a href="/add-subject">Clique aqui</a> para adicionar uma
+      Este aluno não possui disciplinas cadastradas. <a href="/add-subject?studentID={{ .Student.ID }}">Clique aqui</a> para adicionar uma
       disciplina para este aluno.
 
       {{ end }}

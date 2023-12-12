@@ -27,12 +27,12 @@
     <div class="col-6">
 
       <form method="POST" action="createOrEditSubject" class="mb-3">
-
-        <input type="hidden" class="form-control" name="ID" required value="{{.Student.ID}}">
+        
+        <input type="hidden" class="form-control" name="StudentID" required value="{{ .StudentID }}">
 
         <div class="mb-3">
           <label for="selectSerieType" class="form-label">Disciplina</label>
-          <select class="form-select" aria-label="Default select example" name="serieType" required maxlength="12"
+          <select class="form-select" aria-label="Default select example" name="Title" required maxlength="12"
             value="{{.Student.SerieType}}">
             <option value="">Escolha uma disciplina</option>
             <option value="Matemática">Matemática</option>
@@ -43,25 +43,25 @@
 
         <div class="mb-3">
           <label for="formGroupExampleInput2" class="form-label">Nota 1</label>
-          <input type="number" class="form-control" name="serie" placeholder="Nota 1" min="1" max="10" required {{if ne
-            .Student.Serie 0}}value="{{.Student.Serie}}" {{end}}>
+          <input type="number" class="form-control" name="Score1" placeholder="Nota 1" min="1" max="10" required {{if ne
+            .Student.Serie 0}} value="{{.Student.Serie}}" {{end}}>
         </div>
 
         <div class="mb-3">
           <label for="formGroupExampleInput2" class="form-label">Nota 2</label>
-          <input type="number" class="form-control" name="serie" placeholder="Nota 2" min="1" max="10" required {{if ne
+          <input type="number" class="form-control" name="Score2" placeholder="Nota 2" min="1" max="10" required {{if ne
             .Student.Serie 0}}value="{{.Student.Serie}}" {{end}}>
         </div>
 
         <div class="mb-3">
           <label for="formGroupExampleInput2" class="form-label">Nota 3</label>
-          <input type="number" class="form-control" name="serie" placeholder="Nota 3" min="1" max="10" required {{if ne
+          <input type="number" class="form-control" name="Score3" placeholder="Nota 3" min="1" max="10" required {{if ne
             .Student.Serie 0}}value="{{.Student.Serie}}" {{end}}>
         </div>
 
         <div class="mb-3">
           <label for="formGroupExampleInput2" class="form-label">Nota 4</label>
-          <input type="number" class="form-control" name="serie" placeholder="Nota 4" min="1" max="10" required {{if ne
+          <input type="number" class="form-control" name="Score4" placeholder="Nota 4" min="1" max="10" required {{if ne
             .Student.Serie 0}}value="{{.Student.Serie}}" {{end}}>
         </div>
 

@@ -48,12 +48,12 @@ func GetDiscipline(studentID string) Subject {
 
 }
 
-func CreateSubject(title string, score1, score2, score3, score4 float64, studentID int) {
+func CreateSubject(title, studentID string, score1, score2, score3, score4 float64) {
 
 	dbData := db.ConnectDatabase()
 	defer dbData.Close()
 
-	createSubject, err := dbData.Prepare("INSERT INTO students (Title, Score1, Score2, Score3, Score4, StudentID) VALUES (?, ?, ?, ?, ?, ?);")
+	createSubject, err := dbData.Prepare("INSERT INTO subjects (Title, Score1, Score2, Score3, Score4, StudentID) VALUES (?, ?, ?, ?, ?, ?);")
 
 	if err != nil {
 		panic(err.Error())
@@ -67,7 +67,7 @@ func CreateSubject(title string, score1, score2, score3, score4 float64, student
 
 }
 
-func EditSubject(title string, score1, score2, score3, score4 float64, subjectID int) {
+func EditSubject(title, subjectID string, score1, score2, score3, score4 float64) {
 
 	dbData := db.ConnectDatabase()
 	defer dbData.Close()
@@ -78,7 +78,7 @@ func EditSubject(title string, score1, score2, score3, score4 float64, subjectID
 		panic(err.Error())
 	}
 
-	_, err = editSubject.Exec(title, score1, score2, score3, score4)
+	_, err = editSubject.Exec(title, score1, score2, score3, score4, subjectID)
 
 	if err != nil {
 		panic(err.Error())

@@ -4,16 +4,8 @@ import (
 	"fmt"
 	"net/http"
 	"strconv"
-	"text/template"
 	"vuewebapp/models"
 )
-
-type Data struct {
-	Action  string
-	Student models.Student
-}
-
-var temp = template.Must(template.ParseGlob("templates/*.html"))
 
 func IndexView(w http.ResponseWriter, r *http.Request) {
 
@@ -68,19 +60,6 @@ func PageCreateStudentView(w http.ResponseWriter, r *http.Request) {
 
 }
 
-func PageAddSubjectView(w http.ResponseWriter, r *http.Request) {
-
-	student := models.Student{}
-
-	data := Data{
-		Action:  "create",
-		Student: student,
-	}
-
-	temp.ExecuteTemplate(w, "AddOrEditSubject", data)
-
-}
-
 func DeleteStudentView(w http.ResponseWriter, r *http.Request) {
 
 	studentID := r.URL.Query().Get("id")
@@ -122,47 +101,3 @@ func CreateOrEditStudentView(w http.ResponseWriter, r *http.Request) {
 	http.Redirect(w, r, "/", 301)
 
 }
-
-// func CreateOrEditSubjectView(w http.ResponseWriter, r *http.Request) {
-
-// 	if r.Method == "POST" {
-
-// 		title := r.FormValue("title")
-// 		score1Str := r.FormValue("score1")
-// 		score2Str := r.FormValue("score2")
-// 		score3Str := r.FormValue("score3")
-// 		score4Str := r.FormValue("score4")
-
-// 		score1, err := strconv.ParseFloat(score1Str, 64)
-// 		if err != nil {
-// 			fmt.Println("Erro durante a conversão do score1:", err)
-// 		}
-
-// 		score2, err := strconv.ParseFloat(score2Str, 64)
-// 		if err != nil {
-// 			fmt.Println("Erro durante a conversão do score2:", err)
-// 		}
-
-// 		score3, err := strconv.ParseFloat(score3Str, 64)
-// 		if err != nil {
-// 			fmt.Println("Erro durante a conversão do score3:", err)
-// 		}
-
-// 		score4, err := strconv.ParseFloat(score4Str, 64)
-// 		if err != nil {
-// 			fmt.Println("Erro durante a conversão do score4:", err)
-// 		}
-
-// 		studentID := r.FormValue("ID")
-
-// 		if studentID != "0" {
-// 			models.EditSubject(firstName, lastName, serieType, email, studentID, gender, serieConverted, ageConverted)
-// 		} else {
-// 			models.CreateSubject(firstName, lastName, serieType, email, gender, serieConverted, ageConverted)
-// 		}
-
-// 	}
-
-// 	http.Redirect(w, r, "/", 301)
-
-// }

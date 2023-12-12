@@ -18,13 +18,12 @@ func HandleRoutes() {
 	// Formulários para adicionar ou editar aluno e disciplina
 	http.HandleFunc("/add-student", controllers.PageCreateStudentView)
 	http.HandleFunc("/edit-student", controllers.PageEditStudentView)
-	http.HandleFunc("/add-subject", controllers.PageAddSubjectView)
 
 	// Apagar, deletar ou editar aluno
 	http.HandleFunc("/createOrEdit", controllers.CreateOrEditStudentView)
 	http.HandleFunc("/delete", controllers.DeleteStudentView)
 
 	// Apagar, deletar ou editar disciplina
-	// http.HandleFunc("/createOrEditSubject", controllers.CreateOrEditSubjectView)
+	http.HandleFunc("/add-subject", controllers.PageAddSubjectView)
 
 }
